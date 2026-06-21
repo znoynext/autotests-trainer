@@ -17,9 +17,7 @@ coverage/
 coverage.cobertura.xml
 
 # Local app data
-src/AutotestsTrainer.Web/App_Data/*.db
-src/AutotestsTrainer.Web/App_Data/*.db-shm
-src/AutotestsTrainer.Web/App_Data/*.db-wal
+src/AutotestsTrainer.Web/App_Data/
 
 # Local logs
 *.log

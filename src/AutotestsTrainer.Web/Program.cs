@@ -1,14 +1,26 @@
 using AutotestsTrainer.Web.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+builder.Logging.AddDebug();
+
 builder.Services.AddControllersWithViews();
 
-Directory.CreateDirectory(Path.Combine(builder.Environment.ContentRootPath, "App_Data"));
+var appDataPath = Path.Combine(builder.Environment.ContentRootPath, "App_Data");
+var dataProtectionKeysPath = Path.Combine(appDataPath, "Keys");
 
-var connectionString = $"Data Source={Path.Combine(builder.Environment.ContentRootPath, "App_Data", "autotests.db")}";
+Directory.CreateDirectory(appDataPath);
+Directory.CreateDirectory(dataProtectionKeysPath);
+
+var connectionString = $"Data Source={Path.Combine(appDataPath, "autotests.db")}";
+
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(dataProtectionKeysPath));
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(connectionString));
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
