@@ -136,7 +136,10 @@ public class TrainerIntegrationTests : IClassFixture<TrainerWebApplicationFactor
 
     private static async Task<string> GetAntiForgeryTokenAsync(HttpClient client, string path)
     {
-        var html = await client.GetStringAsync(path);
+        var response = await client.GetAsync(path);
+        var html = await response.Content.ReadAsStringAsync();
+        Assert.True(response.IsSuccessStatusCode, $"Страница {path} вернула {(int)response.StatusCode}:\n{html}");
+
         const string marker = "name=\"__RequestVerificationToken\" type=\"hidden\" value=\"";
         var start = html.IndexOf(marker, StringComparison.Ordinal);
         Assert.True(start >= 0, "Не найден anti-forgery token");
