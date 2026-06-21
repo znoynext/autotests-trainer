@@ -1,0 +1,53 @@
+@{
+    ViewData["Title"] = "Тренажёр автотестов";
+}
+
+<section class="hero">
+    <div class="hero-copy">
+        <div class="text-uppercase text-primary small fw-semibold">C# / ASP.NET Core / SQLite</div>
+        <h1>АВТОТЕСТЫ</h1>
+        <p class="mb-3">
+            Локальный стенд для практики UI-тестов, авторизации, API и проверок базы данных.
+            Здесь можно безопасно ломать и чинить сценарии, не затрагивая боевые системы.
+        </p>
+        <div class="button-row">
+            <a class="btn btn-primary" asp-controller="Account" asp-action="Login">Войти</a>
+            <a class="btn btn-outline-secondary" asp-controller="WorkItems" asp-action="Index">Открыть задачи</a>
+        </div>
+        <div class="info-grid">
+            <div class="info-tile">
+                <div class="fw-semibold">UI</div>
+                <div class="muted">Страницы входа, панели и списка задач.</div>
+            </div>
+            <div class="info-tile">
+                <div class="fw-semibold">Авторизация</div>
+                <div class="muted">Cookie login через форму входа.</div>
+            </div>
+            <div class="info-tile">
+                <div class="fw-semibold">API</div>
+                <div class="muted">JSON-эндпоинты для чтения и создания задач.</div>
+            </div>
+            <div class="info-tile">
+                <div class="fw-semibold">БД</div>
+                <div class="muted">SQLite-файл с данными пользователя и задач.</div>
+            </div>
+        </div>
+    </div>
+
+    <aside class="hero-panel">
+        <div class="page-title mb-2">Доступ для тренировки</div>
+        <dl class="row mb-0">
+            <dt class="col-4">Логин</dt>
+            <dd class="col-8"><code>admin</code></dd>
+            <dt class="col-4">Пароль</dt>
+            <dd class="col-8"><code>admin</code></dd>
+            <dt class="col-4">API</dt>
+            <dd class="col-8"><code>/api/workitems</code></dd>
+            <dt class="col-4">БД</dt>
+            <dd class="col-8"><code>App_Data/autotests.db</code></dd>
+        </dl>
+        <p class="mt-3 mb-0 muted">
+            После входа откроются панель и список задач. По ним удобно писать проверки переходов, данных и статусов.
+        </p>
+    </aside>
+</section>

@@ -1,0 +1,85 @@
+@{
+    ViewData["Title"] = "API";
+}
+
+<div class="page-title">API</div>
+<p class="muted mb-3">Здесь можно руками дергать API без Postman и без кода теста.</p>
+
+<div class="row g-3">
+    <div class="col-12 col-lg-4">
+        <div class="form-surface">
+            <div class="fw-semibold mb-2">Запросы</div>
+            <div class="stack">
+                <button type="button" id="load-items" class="btn btn-primary">Получить список задач</button>
+                <button type="button" id="create-item" class="btn btn-outline-primary">Создать демо-задачу</button>
+            </div>
+
+            <hr />
+
+            <div class="small text-muted mb-1">GET /api/workitems</div>
+            <div class="small text-muted mb-1">POST /api/workitems</div>
+            <div class="small text-muted">POST /api/workitems/{id}/complete</div>
+        </div>
+    </div>
+
+    <div class="col-12 col-lg-8">
+        <div class="form-surface">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="fw-semibold">Ответ API</div>
+                <span class="small text-muted" id="api-status">ожидание</span>
+            </div>
+            <pre id="api-output" class="api-output mb-0">Нажми кнопку слева.</pre>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const output = document.getElementById('api-output');
+        const status = document.getElementById('api-status');
+
+        function render(value) {
+            output.textContent = typeof value === 'string'
+                ? value
+                : JSON.stringify(value, null, 2);
+        }
+
+        async function loadItems() {
+            status.textContent = 'загрузка';
+            const response = await fetch('/api/workitems', { credentials: 'same-origin' });
+            const text = await response.text();
+            status.textContent = response.status;
+            try {
+                render(JSON.parse(text));
+            } catch {
+                render(text);
+            }
+        }
+
+        async function createItem() {
+            status.textContent = 'создание';
+            const response = await fetch('/api/workitems', {
+                method: 'POST',
+                credentials: 'same-origin',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    title: 'Демо задача из API',
+                    description: 'Создано из вкладки API'
+                })
+            });
+
+            const text = await response.text();
+            status.textContent = response.status;
+            try {
+                render(JSON.parse(text));
+            } catch {
+                render(text || 'No content');
+            }
+        }
+
+        document.getElementById('load-items').addEventListener('click', loadItems);
+        document.getElementById('create-item').addEventListener('click', createItem);
+    </script>
+}

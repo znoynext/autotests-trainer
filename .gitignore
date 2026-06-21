@@ -1,0 +1,31 @@
+# Build output
+bin/
+obj/
+
+# User and IDE files
+.vs/
+.vscode/.ropeproject
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Test results and coverage
+TestResults/
+*.trx
+coverage/
+coverage.cobertura.xml
+
+# Local app data
+src/AutotestsTrainer.Web/App_Data/*.db
+src/AutotestsTrainer.Web/App_Data/*.db-shm
+src/AutotestsTrainer.Web/App_Data/*.db-wal
+
+# Local logs
+*.log
+app.out.log
+app.err.log
+
+# OS files
+Thumbs.db
+Desktop.ini

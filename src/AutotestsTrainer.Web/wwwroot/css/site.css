@@ -1,0 +1,146 @@
+:root {
+    --app-bg: #f4f6f8;
+    --app-surface: #ffffff;
+    --app-border: #d7dde3;
+    --app-text: #1f2937;
+    --app-muted: #6b7280;
+    --app-header: #1f2937;
+    --app-accent: #2563eb;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    background: var(--app-bg);
+    color: var(--app-text);
+    min-height: 100vh;
+}
+
+a {
+    color: var(--app-accent);
+    text-decoration: none;
+}
+
+.app-header {
+    background: var(--app-header);
+}
+
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: #fff;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #dbeafe;
+}
+
+.page-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr);
+    align-items: start;
+}
+
+.hero-panel,
+.section-panel {
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.hero-copy h1 {
+    font-size: 2rem;
+    margin: 0 0 0.5rem;
+}
+
+.hero-copy p,
+.section-panel p,
+.muted {
+    color: var(--app-muted);
+}
+
+.info-grid,
+.stats-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 1rem;
+}
+
+.info-tile,
+.stat-tile {
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
+    border-radius: 8px;
+    padding: 1rem;
+    min-height: 120px;
+}
+
+.stat-value {
+    font-size: 1.9rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.stat-label {
+    color: var(--app-muted);
+    margin-top: 0.25rem;
+}
+
+.table-wrap {
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.form-surface {
+    background: var(--app-surface);
+    border: 1px solid var(--app-border);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+.stack {
+    display: grid;
+    gap: 0.75rem;
+}
+
+.api-output {
+    min-height: 360px;
+    max-height: 60vh;
+    overflow: auto;
+    background: #0f172a;
+    color: #e2e8f0;
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 0.875rem;
+}
+
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+code {
+    color: #111827;
+}
+
+@media (max-width: 992px) {
+    .hero,
+    .stats-grid,
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+}

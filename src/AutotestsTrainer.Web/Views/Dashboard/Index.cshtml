@@ -1,0 +1,65 @@
+@model DashboardViewModel
+@{
+    ViewData["Title"] = "Панель";
+}
+
+<div class="page-title">Панель</div>
+<p class="muted mb-3">Пользователь: <strong>@Model.UserName</strong></p>
+
+<div class="stats-grid">
+    <div class="stat-tile">
+        <div class="stat-value">@Model.TotalItems</div>
+        <div class="stat-label">Всего задач</div>
+    </div>
+    <div class="stat-tile">
+        <div class="stat-value">@Model.OpenItems</div>
+        <div class="stat-label">Открыто</div>
+    </div>
+    <div class="stat-tile">
+        <div class="stat-value">@Model.DoneItems</div>
+        <div class="stat-label">Выполнено</div>
+    </div>
+    <div class="stat-tile">
+        <div class="stat-value">API</div>
+        <div class="stat-label">Проверка списка задач и статусов</div>
+    </div>
+</div>
+
+<div class="section-panel mt-3">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="page-title mb-0">Последние задачи</div>
+        <a class="btn btn-outline-primary btn-sm" asp-controller="WorkItems" asp-action="Index">Открыть список</a>
+    </div>
+
+    @if (Model.RecentItems.Count == 0)
+    {
+        <p class="mb-0 muted">Пока задач нет.</p>
+    }
+    else
+    {
+        <div class="table-wrap">
+            <table class="table table-hover mb-0">
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Статус</th>
+                        <th>Создано</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.RecentItems)
+                    {
+                        <tr>
+                            <td>
+                                <div class="fw-semibold">@item.Title</div>
+                                <div class="small text-muted">@item.Description</div>
+                            </td>
+                            <td>@item.Status</td>
+                            <td>@item.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
