@@ -76,7 +76,7 @@ public class TrainerIntegrationTests : IClassFixture<TrainerWebApplicationFactor
         response.EnsureSuccessStatusCode();
 
         var html = await response.Content.ReadAsStringAsync();
-        Assert.Contains("АВТОТЕСТЫ", html);
+        Assert.Contains("QA/AQA Trainer", html);
         Assert.DoesNotContain("Всего задач", html);
     }
 

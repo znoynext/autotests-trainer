@@ -9,24 +9,24 @@
             <div class="page-title">Вход в стенд</div>
             <p class="muted">Используй демо-аккаунт из главной страницы.</p>
 
-            <form asp-action="Login" method="post" class="stack" data-login-form>
+            <form asp-action="Login" method="post" class="stack">
                 @Html.AntiForgeryToken()
                 <input type="hidden" asp-for="ReturnUrl" />
                 <div asp-validation-summary="ModelOnly" class="text-danger small"></div>
 
                 <div>
                     <label asp-for="Username" class="form-label"></label>
-                    <input asp-for="Username" class="form-control" autocomplete="username" data-login-field />
+                    <input asp-for="Username" class="form-control" autocomplete="username" />
                     <span asp-validation-for="Username" class="text-danger small"></span>
                 </div>
 
                 <div>
                     <label asp-for="Password" class="form-label"></label>
-                    <input asp-for="Password" class="form-control" autocomplete="current-password" data-login-field />
+                    <input asp-for="Password" class="form-control" autocomplete="current-password" />
                     <span asp-validation-for="Password" class="text-danger small"></span>
                 </div>
 
-                <button type="submit" class="btn btn-primary align-self-start" data-login-submit disabled>Войти</button>
+                <button type="submit" class="btn btn-primary align-self-start" disabled>Войти</button>
             </form>
         </div>
     </div>

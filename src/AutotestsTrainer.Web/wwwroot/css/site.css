@@ -133,6 +133,16 @@ a {
     gap: 0.75rem;
 }
 
+.btn:disabled,
+.btn.disabled,
+fieldset:disabled .btn {
+    background-color: #9ca3af;
+    border-color: #9ca3af;
+    color: #f9fafb;
+    cursor: not-allowed;
+    opacity: 1;
+}
+
 code {
     color: #111827;
 }
